@@ -1,0 +1,38 @@
+function decidirCompraOuEconomizar(saldoInicial, resultadoUltimoRound, custoItem) {
+    let novoSaldo = saldoInicial;
+
+    // Atualiza o saldo baseado no resultado do último round
+    switch (resultadoUltimoRound) {
+        case 'ganhou':
+            novoSaldo *= 1.15; // Aumenta em 15%
+            break;
+        case 'perdeu':
+            novoSaldo *= 1.05; // Aumenta em 5%
+            break;
+        case 'bônus':
+            novoSaldo *= 1.20; // Aumenta em 20%
+            break;
+        default:
+            break;
+    }
+
+    novoSaldo = Math.round(novoSaldo);
+
+    // Verifica se o saldo é suficiente para comprar o item
+    if (novoSaldo >= custoItem) {
+        return 'Comprar';
+    } else {
+        return 'Economizar';
+    }
+}
+
+// Leitura dos valores de entrada usando gets()
+const saldoInicial = parseInt(gets());
+const resultadoUltimoRound = gets();
+const custoItem = parseInt(gets());
+
+// Chama a função para decidir
+const resultado = decidirCompraOuEconomizar(saldoInicial, resultadoUltimoRound, custoItem);
+
+// Imprime o resultado utilizando print() conforme especificado pela plataforma DIO
+print(resultado);
